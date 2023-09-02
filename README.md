@@ -1,2 +1,0 @@
-# AppNotas
-Equipo 2

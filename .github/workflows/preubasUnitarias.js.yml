@@ -18,10 +18,6 @@ jobs:
       with:
         node-version: '14'  # Especifica la versión de Node.js que necesitas
 
-    - name: Instalación de Dependencias
-      run: npm install
-      working-directory: ../app-notas/package.json  # Reemplaza con la ruta correcta
-
     - name: Ejecución de Pruebas Unitarias
       run: npm test
       working-directory: ../app-notas/package.json  # Reemplaza con la ruta correcta

@@ -28,7 +28,9 @@ if (cluster.isMaster) {
 } else {
   // Este es un proceso trabajador, inicia un servidor HTTP
   const server = createServer();
-  const port = process.env.PORT || 8000;
+  //const port = process.env.PORT || 3000;
+  const port = 8000 + cluster.worker.id; // Para probar que el factor 7
+  createServer(port);
 
   server.listen(port, () => {
     console.log(`Worker ${process.pid} started and listening on port ${port}`);

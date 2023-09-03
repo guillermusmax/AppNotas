@@ -7,7 +7,6 @@ const path = require("path");
 
 const updateRouter = require("./update-router");
 const app = express();
-//const port = process.env.PORT || 8001; // Puedes definir el puerto que prefieras o usar uno predeterminado
 
 // Configurar la conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -155,9 +154,7 @@ app.delete("/api/note/:id", (req, res, next) => {
       .json({ deleted: true, document, message: "Note deleted successfully" });
   });
 });
-/*
-app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${port}`);
-});
-*/
+
+
+
 module.exports = app;

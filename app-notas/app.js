@@ -174,5 +174,14 @@ setInterval(() => {
   performDatabaseBackup(); // Realiza una copia de seguridad cada cierto intervalo (por ejemplo, diariamente)
 }, 24 * 60 * 60 * 1000); // Intervalo de 24 horas en milisegundos
 
+app.use((err, req, res, next) => { // para el factor 8 y el manejo de errores
+  console.error(err.stack);
+  res.status(500).send('Algo salió mal!');
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 
 module.exports = app;

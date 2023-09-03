@@ -1,12 +1,27 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
+const Notes = require("./database");
 const express = require("express");
 const body_parser = require("body-parser");
 const path = require("path");
 
-require("dotenv").config();
-
-const Notes = require("./database");
 const updateRouter = require("./update-router");
 const app = express();
+//const port = process.env.PORT || 8001; // Puedes definir el puerto que prefieras o usar uno predeterminado
+
+// Configurar la conexión a la base de datos MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", (err) => {
+  console.error("Error de conexión a MongoDB:", err);
+});
+db.once("open", () => {
+  console.log("Conexión a MongoDB establecida.");
+});
+
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -140,5 +155,9 @@ app.delete("/api/note/:id", (req, res, next) => {
       .json({ deleted: true, document, message: "Note deleted successfully" });
   });
 });
-
+/*
+app.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}`);
+});
+*/
 module.exports = app;

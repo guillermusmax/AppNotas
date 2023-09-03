@@ -17,5 +17,5 @@ jobs:
 
     - name: Instalación de Dependencias
       run: npm install  # Asume que tienes un archivo package.json en tu repositorio
-      working-directory: ../app-notas 
+      working-directory: app-notas 
 

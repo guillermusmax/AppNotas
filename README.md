@@ -7,7 +7,7 @@ Equipo 2
 - Guillermo Jorge #1107266 (guillermusmax)
 
 **Para mis compañeros:** 
-- *Recordar instalar las dependecias con npm install:*
+- *Recordar instalar las dependecias con npm install...*
 - *El .env tiene las siguientes variables:*
 MONGO_DB_HOST=valor
 MONGO_DB_PORT=valor

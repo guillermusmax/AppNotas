@@ -22,6 +22,19 @@ db.once("open", () => {
 });
 
 
+// Función para realizar una copia de seguridad de la base de datos
+const performDatabaseBackup = () => {
+  const backupCommand = 'mongodump --db mydb --out /path/to/backup/folder'; // Reemplaza con tus valores
+  exec(backupCommand, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error en la copia de seguridad: ${error}`);
+      return;
+    }
+    console.log(`Copia de seguridad exitosa: ${stdout}`);
+  });
+};
+
+
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
@@ -155,6 +168,11 @@ app.delete("/api/note/:id", (req, res, next) => {
   });
 });
 
+
+// Realizar una copia de seguridad en una programación específica
+setInterval(() => {
+  performDatabaseBackup(); // Realiza una copia de seguridad cada cierto intervalo (por ejemplo, diariamente)
+}, 24 * 60 * 60 * 1000); // Intervalo de 24 horas en milisegundos
 
 
 module.exports = app;

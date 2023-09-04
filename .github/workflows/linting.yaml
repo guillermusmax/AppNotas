@@ -24,4 +24,9 @@ jobs:
     - name: Ejecución de ESLint
       run: npm run lint 
       working-directory: app-notas
+    - name: Arreglando Lint
+      run: npm run lint -- --fix
+      working-directory: app-notas
+      
+
 

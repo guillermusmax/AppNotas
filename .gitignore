@@ -4,5 +4,5 @@ build/
 dist/
 
 # Archivos sensibles (se recomienda no incluir credenciales)
-.env
+#.env (debido a que las pruebas unitarias lo requieren)
 .env.local

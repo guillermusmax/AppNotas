@@ -3,7 +3,7 @@ name: Análisis del código (Linting) con ESLint
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   lint:
@@ -16,13 +16,13 @@ jobs:
     - name: Configuración de Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  
+        node-version: '14'
 
     - name: Instalación de Dependencias
       run: npm install
-      working-directory: app-notas
+
     - name: Ejecución de ESLint
-      run: npm run lint
+      run: npm run lint -- --no-error-on-eof
       working-directory: app-notas
    
       

@@ -19,12 +19,8 @@ jobs:
         node-version: '14'
 
     - name: Instalación de Dependencias
-      run: npm install
+      run: npm install eslint
 
     - name: Ejecución de ESLint
       run: npm run lint -- --no-error-on-eof
       working-directory: app-notas
-   
-      
-
-

@@ -29,4 +29,4 @@ jobs:
 
     # Configura la ruta del package.json manualmente
     - name: Configura ruta de package.json
-      run: echo "npm_config_prefix=/<app-notas>" >> $GITHUB_ENV
+      run: echo "npm_config_prefix=app-notas" >> $GITHUB_ENV

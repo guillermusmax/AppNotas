@@ -1,22 +1,25 @@
-name: Linting
+name: Lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main # Cambia esto al nombre de tu rama principal
 
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout código
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: Configura Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 14
+        node-version: '14' # Cambia esto según tu versión de Node.js
 
-    - name: Install dependencies
+    - name: Instala dependencias
       run: npm install
 
-    - name: Run ESLint
+    - name: Ejecuta ESLint
       run: npm run lint

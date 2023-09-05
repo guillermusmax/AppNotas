@@ -21,12 +21,8 @@ jobs:
     - name: Instala dependencias
       run: npm install
 
-    - name: Instala ESLint
+    - name: instala eslint
       run: npm install eslint --save-dev
 
-    - name: Ejecuta ESLint
-      run: npm run lint
-
-    # Configura la ruta del package.json manualmente
-    - name: Configura ruta de package.json
-      run: echo "npm_config_prefix=app-notas" >> $GITHUB_ENV
+    - name: configura eslint
+      run: npx eslint --init

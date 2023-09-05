@@ -1,26 +1,22 @@
-name: Análisis del código (Linting) con ESLint
+name: Linting
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout del código fuente
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Configuración de Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: 14
 
-    - name: Instalación de Dependencias
-      run: npm install eslint
+    - name: Install dependencies
+      run: npm install
 
-    - name: Ejecución de ESLint
-      run: npm run lint -- --no-error-on-eof
-      working-directory: app-notas
+    - name: Run ESLint
+      run: npm run lint

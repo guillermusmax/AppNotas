@@ -23,12 +23,10 @@ jobs:
 
     - name: Instala ESLint
       run: npm install eslint --save-dev
-       
-    - name: configura eslint
-      run: npx eslint --init
 
     - name: Ejecuta ESLint
       run: npm run lint
+
 
 
       

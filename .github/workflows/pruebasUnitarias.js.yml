@@ -8,7 +8,16 @@ on:
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
-
+    env:
+        MONGO_DB_HOST: 127.0.0.1
+        MONGO_DB_PORT: 27017
+        MONGO_DB_NAME: Notes
+        MONGODB_URI: mongodb://127.0.0.1:27017/Notes
+        SECRET_KEY: secreto
+        DEBUG: 'true'
+        PORT: 3000
+        MI_VARIABLE_SECRETA: secreto123
+        
     steps:
     - name: Checkout del código fuente
       uses: actions/checkout@v2  # Asegurarse de que el código fuente se haya clonado

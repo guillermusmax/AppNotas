@@ -21,8 +21,11 @@ jobs:
     - name: Instala dependencias
       run: npm install
 
-    - name: instala eslint
+    - name: Instala eslint
       run: npm install eslint --save-dev
 
-    - name: configura eslint
+    - name: Configura eslint
       run: npx eslint --init
+
+    - name: Ejecuta ESLint
+      run: npx eslint .

@@ -1,8 +1,11 @@
+# Carpeta macOS generada por macOS Finder
+__MACOSX/
+
 # Archivos y directorios generados
 node_modules/
 build/
 dist/
 
 # Archivos sensibles (se recomienda no incluir credenciales)
-#.env (debido a que las pruebas unitarias lo requieren)
+.env
 .env.local

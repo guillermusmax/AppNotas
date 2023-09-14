@@ -1,0 +1,35 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main # Cambia esto al nombre de tu rama principal
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+        MONGO_DB_HOST: 127.0.0.1
+        MONGO_DB_PORT: 27017
+        MONGO_DB_NAME: Notes
+        MONGODB_URI: mongodb://127.0.0.1:27017/Notes
+        SECRET_KEY: secreto
+        DEBUG: 'true'
+        PORT: 3000
+        MI_VARIABLE_SECRETA: secreto123
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v2
+
+    - name: Configura Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Cambia esto según tu versión de Node.js
+
+    - name: Instala dependencias
+      run: npm install
+      working-directory: app-notas 
+
+    - name: Ejecuta ESLint
+      run: npx eslint .
+      working-directory: app-notas 

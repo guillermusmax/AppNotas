@@ -2,7 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Notes = require('./database');
 const express = require('express');
-const body_parser = require('body-parser');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const updateRouter = require('./update-router');
@@ -21,25 +21,11 @@ db.once('open', () => {
   console.log('Conexión a MongoDB establecida.');
 });
 
-
-// Función para realizar una copia de seguridad de la base de datos
-const performDatabaseBackup = () => {
-  const backupCommand = 'mongodump --db mydb --out /path/to/backup/folder'; // Reemplaza con tus valores
-  exec(backupCommand, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error en la copia de seguridad: ${error}`);
-      return;
-    }
-    console.log(`Copia de seguridad exitosa: ${stdout}`);
-  });
-};
-
-
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(body_parser.urlencoded({extended: true}));
-app.use(body_parser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use('/updatepage', updateRouter);
 app.use((req, res, next) => {
   console.log(req.method + ' : ' + req.url);
@@ -168,13 +154,8 @@ app.delete('/api/note/:id', (req, res, next) => {
   });
 });
 
-
-
-
-
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
-
 
 module.exports = app;

@@ -4,11 +4,13 @@
 require('dotenv').config();
 const cluster = require('cluster');
 const http = require('http');
-const numCPUs = require('os').cpus().length; // Obtener el número de núcleos de CPU disponibles
+const numCPUs = require('os').cpus().length;
+
 
 // Función para crear un servidor HTTP
 const createServer = () => {
-  const app = require('./app'); // Reemplaza "./app" con la ubicación real de tu aplicación
+  // Reemplaza "./app" con la ubicación real de tu aplicación
+  const app = require('./app');
   return http.createServer(app);
 };
 

@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const port = process.env.PORT || 3000;
-const mongoURI = process.env.MONGODB_URI;
 
 mongoose
-    .connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 30000})
+    .connect(process.env.MONGODB_URI,
+        {useNewUrlParser: true,
+          useUnifiedTopology: true,
+          serverSelectionTimeoutMS: 30000})
     .then(() => {
       app.listen(port, (arg) => {
         console.log(`Server started @ ${port}.`);

@@ -28,7 +28,7 @@ describe('GET /', () => {
   // Probamos que obtenga la página de vista
   it('should return the view page', async () => {
     const res = await request(app).get('/');
-    expect(res.statusCode).toBe(302); // Cambiar a 200 si se espera que retorne 200
+    expect(res.statusCode).toBe(302);
   });
 });
 
@@ -75,7 +75,7 @@ describe('PUT /api/note/:id', () => {
     const res = await request(app).get('/api/note');
     expect(res.statusCode).toBe(200);
     // Elegimos el ID de cualquier nota
-    const {_id, title, description} = res.body[0];
+    const {_id, description} = res.body[0];
     // Generamos un título aleatorio
     const newTitle = Math.random().toString(36).substring(7);
     const res2 = await request(app)

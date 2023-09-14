@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 // Conecta a la base de datos MongoDB
 mongoose
-    .connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+    .connect(process.env.MONGODB_URI,
+        {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
       console.log('Conexión a MongoDB establecida.');
 

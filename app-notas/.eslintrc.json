@@ -6,7 +6,7 @@
   },
   "extends": "google",
   "parserOptions": {
-    "ecmaVersion": "es2021"
+    "ecmaVersion": "latest"
   },
   "rules": {}
 }

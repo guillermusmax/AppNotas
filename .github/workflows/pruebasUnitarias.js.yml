@@ -32,5 +32,11 @@ jobs:
       working-directory: app-notas 
 
     - name: Ejecución de Pruebas Unitarias
-      run: npm test
+      run: |
+        if npm test; then
+          echo "Las pruebas pasaron exitosamente."
+        else
+          echo "Las pruebas fallaron. Cerrando el trabajo."
+          exit 1
+        fi
       working-directory: app-notas 

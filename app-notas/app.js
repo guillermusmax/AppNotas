@@ -122,7 +122,7 @@ app.post('/api/note', (req, res, next) => {
   const note = new Notes({title, description});
   note.save((err, note) => {
     if (err) return next(err);
-    res.status(201).json({});
+    res.status(200).json({note});
   });
 });
 
@@ -132,14 +132,14 @@ app.get('/api/note/:id', (req, res, next) => {
   const {id} = req.params;
   Notes.findById(id, (err, note) => {
     if (err) return next(err);
-    res.status(201).json(note);
+    res.status(200).json(note);
   });
 });
 // Read all
 app.get('/api/note', (req, res, next) => {
   Notes.find({}, (err, notes) => {
     if (err) return next(err);
-    res.status(201).json(notes);
+    res.status(200).json(notes);
   });
 });
 
@@ -163,21 +163,14 @@ app.delete('/api/note/:id', (req, res, next) => {
   Notes.findByIdAndRemove(id, {useFindAndModify: false}, (err, document) => {
     if (err) return next(err);
     res
-        .status(500)
+        .status(200)
         .json({deleted: true, document, message: 'Note deleted successfully'});
   });
 });
 
 
-// Realizar una copia de seguridad en una programación específica
-setInterval(() => {
-  performDatabaseBackup(); // Realiza una copia de seguridad cada cierto intervalo (por ejemplo, diariamente)
-}, 24 * 60 * 60 * 1000); // Intervalo de 24 horas en milisegundos
 
-app.use((err, req, res, next) => { // para el factor 8 y el manejo de errores
-  console.error(err.stack);
-  res.status(500).send('Algo salió mal!');
-});
+
 
 app.get('/health', (req, res) => {
   res.status(200).send('OK');

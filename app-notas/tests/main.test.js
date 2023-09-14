@@ -3,20 +3,18 @@ const request = require('supertest');
 const app = require('../app');
 require('dotenv').config();
 
-require('dotenv').config();
-
-//const { MONGO_DB_HOST, MONGO_DB_PORT, MONGODB_URI} = process.env;
-//const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
-//const mongoURI = `mongodb://${credentials}${MONGO_DB_HOST}:${MONGO_DB_PORT}/`;
-
 const mongoURI = process.env.MONGODB_URI;
-/* Connecting to the database before each test. */
+
+// Conectar a la base de datos antes de todas las pruebas
 beforeAll(async () => {
-  await mongoose.connect(mongoURI);
+  await mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 });
 
+// Desconectar de la base de datos después de todas las pruebas
 afterAll(async () => {
-  // Closing the DB connection allows Jest to exit successfully.
   try {
     await mongoose.connection.close();
   } catch (error) {
@@ -24,31 +22,31 @@ afterAll(async () => {
   }
 });
 
-/* Testing the API endpoints. */
+// Pruebas para los puntos finales de la API
 
 describe('GET /', () => {
-  // We're getting / which redirects to /index which renders the view page
+  // Probamos que obtenga la página de vista
   it('should return the view page', async () => {
     const res = await request(app).get('/');
-    // TODO: Change status code to 200
-    expect(res.statusCode).toBe(302);
+    expect(res.statusCode).toBe(302); // Cambiar a 200 si se espera que retorne 200
   });
 });
 
-// Let's test the CRUD operations under /api/note
 describe('POST /api/note', () => {
+  // Probamos que pueda crear una nueva nota
   it('should create a new note', async () => {
     const res = await request(app).post('/api/note').send({
       title: 'Test Title',
       description: 'Test Description',
     });
-    expect(res.statusCode).toBe(201);
-    expect(res.body).toHaveProperty('title');
-    expect(res.body).toHaveProperty('description');
+    expect(res.statusCode).toBe(200);
+    expect(res.body.note).toHaveProperty('title');
+    expect(res.body.note).toHaveProperty('description');
   });
 });
 
 describe('GET /api/note', () => {
+  // Probamos que pueda obtener todas las notas
   it('should return all notes', async () => {
     const res = await request(app).get('/api/note');
     expect(res.statusCode).toBe(200);
@@ -58,10 +56,11 @@ describe('GET /api/note', () => {
 });
 
 describe('GET /api/note/:id', () => {
+  // Probamos que pueda obtener una nota por su ID
   it('should return a note by id', async () => {
     const res = await request(app).get('/api/note');
     expect(res.statusCode).toBe(200);
-    // Pick the id of any note
+    // Elegimos el ID de cualquier nota
     const id = res.body[0]._id;
     const res2 = await request(app).get(`/api/note/${id}`);
     expect(res2.statusCode).toBe(200);
@@ -71,12 +70,13 @@ describe('GET /api/note/:id', () => {
 });
 
 describe('PUT /api/note/:id', () => {
+  // Probamos que pueda actualizar una nota por su ID
   it('should update a note by id', async () => {
     const res = await request(app).get('/api/note');
     expect(res.statusCode).toBe(200);
-    // Pick the id of any note
+    // Elegimos el ID de cualquier nota
     const {_id, title, description} = res.body[0];
-    // Let's generate a random title
+    // Generamos un título aleatorio
     const newTitle = Math.random().toString(36).substring(7);
     const res2 = await request(app)
         .put(`/api/note/${_id}`)
@@ -88,12 +88,14 @@ describe('PUT /api/note/:id', () => {
 });
 
 describe('DELETE /api/note/:id', () => {
+  // Probamos que pueda eliminar una nota por su ID
   it('should delete a note by id', async () => {
     const res = await request(app).get('/api/note');
     expect(res.statusCode).toBe(200);
-    // Pick the id of any note
+    // Elegimos el ID de cualquier nota
     const id = res.body[0]._id;
     const res2 = await request(app).delete(`/api/note/${id}`);
     expect(res2.statusCode).toBe(200);
   });
 });
+

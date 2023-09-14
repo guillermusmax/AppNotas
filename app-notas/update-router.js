@@ -1,4 +1,4 @@
-const router = require('express').router();
+const router = require('express').Router(); // eslint-disable-line new-cap
 
 let id = 0;
 router.get('/:__id', (req, res, next) => {

@@ -3,7 +3,10 @@ name: Lint
 on:
   push:
     branches:
-      - main # Cambia esto al nombre de tu rama principal
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:

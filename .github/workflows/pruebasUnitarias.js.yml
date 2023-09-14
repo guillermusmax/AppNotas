@@ -33,7 +33,7 @@ jobs:
 
     - name: Ejecución de Pruebas Unitarias
       run: |
-        if npm test; then
+        if npm test --forceExit; then
           echo "Las pruebas pasaron exitosamente."
         else
           echo "Las pruebas fallaron. Cerrando el trabajo."

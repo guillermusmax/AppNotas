@@ -2,7 +2,7 @@
 FROM node:14
 
 # Establecemos el directorio de trabajo en /app
-WORKDIR /app
+WORKDIR /app-notas
 
 # Copiamos los archivos package.json y package-lock.json para instalar las dependencias primero
 COPY package*.json /app-notas/

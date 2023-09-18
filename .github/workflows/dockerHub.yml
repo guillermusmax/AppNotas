@@ -14,10 +14,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Build and push the Docker image in general
-      run: |
-        docker build -t rayfel/appnotas:latest .
-        docker push rayfel/appnotas:latest
     - name: Build and push the Docker image in prod/dev
       run: |
         docker-compose -f docker-compose.dev.yml build

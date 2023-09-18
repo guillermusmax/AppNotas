@@ -9,6 +9,8 @@ const updateRouter = require('./update-router');
 
 const app = express();
 const port = process.env.PORT || 3000;
+  console.log(`Servidor en ejecución en el puerto ${port}`);
+
 
 // Configurar la conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -160,8 +162,5 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.listen(port, () => {
-  console.log(`Servidor en ejecución en el puerto ${port}`);
-});
 
 module.exports = app;

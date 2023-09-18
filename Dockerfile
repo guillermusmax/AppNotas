@@ -2,10 +2,10 @@
 FROM node:14
 
 # Establecemos el directorio de trabajo en /app
-WORKDIR /app-notas
+WORKDIR /app
 
 # Copiamos los archivos package.json y package-lock.json para instalar las dependencias primero
-COPY package*.json /app-notas/
+COPY app-notas/package*.json /app/
 
 # Instalamos las dependencias
 RUN npm install 

@@ -16,5 +16,5 @@ COPY . .
 # Exponemos el puerto 3000 (ajusta el puerto si es necesario)
 EXPOSE 3030
 
-# Especificamos el comando para iniciar la aplicación
+# Especificamos el comando para iniciar la aplicación.
 CMD ["node", "app-notas/app.js"]

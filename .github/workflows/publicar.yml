@@ -1,7 +1,7 @@
 name: publish
 on: [push]
 jobs:
-  publish-hello-docker-image:
+  publish-docker-image:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -14,7 +14,12 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Build and push the Docker image
+    - name: Build and push the Docker image in prod/dev
       run: |
         docker-compose -f docker-compose.dev.yml build
         docker-compose -f docker-compose.dev.yml push
+        docker-compose -f docker-compose.prod.yml build
+        docker-compose -f docker-compose.prod.yml push
+
+        
+        

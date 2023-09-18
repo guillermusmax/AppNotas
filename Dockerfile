@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json /app-notas/
 
 # Instalamos las dependencias
-RUN npm install
+RUN npm install /app-notas/
 
 # Copiamos todos los archivos y carpetas de la aplicación a /app en el contenedor
 COPY . .

@@ -9,7 +9,7 @@ const updateRouter = require('./update-router');
 
 const app = express();
 const port = process.env.PORT || 3000;
-  console.log(`Servidor en ejecución en el puerto ${port}`);
+console.log(`Servidor en ejecución en el puerto ${port}`);
 
 
 // Configurar la conexión a la base de datos MongoDB

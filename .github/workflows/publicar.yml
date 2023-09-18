@@ -1,0 +1,16 @@
+name: publish
+on: [push]
+jobs:
+  publish-hello-docker-image:
+    runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+      - name: Build the hello-docker Docker image
+        run: |
+          docker build . -t rayfel/appnotas:latest
+          docker push rayfel/appnotas:latest

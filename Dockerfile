@@ -1,9 +1,20 @@
-FROM node:18
+# Usamos una imagen base de Node.js
+FROM node:14
 
-RUN mkdir -p /home/app
+# Establecemos el directorio de trabajo en /app
+WORKDIR /app
 
-COPY . /home/app
+# Copiamos los archivos package.json y package-lock.json para instalar las dependencias primero
+COPY package*.json /app-notas/
 
-EXPOSE 3000
+# Instalamos las dependencias
+RUN npm install
 
-CMD ["node", "/home/app/index.js"]
+# Copiamos todos los archivos y carpetas de la aplicación a /app en el contenedor
+COPY . .
+
+# Exponemos el puerto 3000 (ajusta el puerto si es necesario)
+EXPOSE 3030
+
+# Especificamos el comando para iniciar la aplicación
+CMD ["node", "app-notas/app.js"]

@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  chanchito-dev:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_DB_HOST=monguito-dev
+      - MONGO_DB_PORT=27017
+      - MONGO_DB_NAME=Notes
+      - MONGODB_URI=mongodb://monguito-dev:27017/Notes
+      - SECRET_KEY=secreto
+      - DEBUG=true
+      - PORT=3000
+    depends_on:
+      - monguito-dev
+  monguito-dev:
+    image: mongo
+    ports:
+      - "27017:27017"

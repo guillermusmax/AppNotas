@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const updateRouter = require('./update-router');
+
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Configurar la conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -156,6 +158,10 @@ app.delete('/api/note/:id', (req, res, next) => {
 
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
+});
+
+app.listen(port, () => {
+  console.log(`Servidor en ejecución en el puerto ${port}`);
 });
 
 module.exports = app;

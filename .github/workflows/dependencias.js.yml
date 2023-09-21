@@ -3,18 +3,30 @@ name: Instalación de Dependencias
 on:
   push:
     branches:
-      - main  # Cambia esto según la rama que desees
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   install-dependencies:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout del código fuente
+      uses: actions/checkout@v2  # Asegurarse de que el código fuente se haya clonado
+
+    - name: Configuración de entorno
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Especifica la versión de Node.js que necesitas
     - name: Configuración de entorno
       uses: actions/setup-node@v2
       with:
         node-version: '14'  # Especifica la versión de Node.js que necesitas
 
     - name: Instalación de Dependencias
-      run: npm install  # Asume que tienes un archivo package.json en tu repositorio
+      run: npm install
+      working-directory: app-notas 
+
 

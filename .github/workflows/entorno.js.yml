@@ -1,0 +1,31 @@
+name: Configuración de Entorno
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Configuración de entorno
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Especifica la versión de Node.js que necesitas
+
+    - name: Carga de variables de ambiente
+      env:
+        MONGO_DB_HOST: 127.0.0.1
+        MONGO_DB_PORT: 27017
+        MONGO_DB_NAME: Notes
+        MONGODB_URI: mongodb://127.0.0.1:27017/Notes
+        SECRET_KEY: secreto
+        DEBUG: 'true'
+        PORT: 3000
+        MI_VARIABLE_SECRETA: secreto123
+      run: echo "Variables de ambiente configuradas correctamente"
